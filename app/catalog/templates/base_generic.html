@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+        <title>Тестовое задание</title>
+    {% endblock title %}
+
+   
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% comment %} bootstrap {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    {% comment %} /bootstrap {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+   
+</head>
+<body>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item"><a href="{% url 'home' %}" class="menu__list-link">На главную</a></li>
+           {% if user.is_authenticated %}
+                <li class="menu__list-item"><a href="{% url 'notes' %}" class="menu__list-link">Список заметок</a></li>
+                <li class="menu__list-item"><a href="{% url 'add_note' %}" class="menu__list-link">Добавить заметку</a></li>
+           {% endif %}
+        </ul>
+        <ul class="menu__auth">
+            {% if user.is_authenticated %}
+                <li class="menu__auth-item"><a href="{% url 'user_logout' %}" class="menu__auth-link">Выйти из аккаунта</a></li>
+            {% else %}
+                <li class="menu__auth-item"><a href="{% url 'user_login' %}" class="menu__auth-link">Авторизация</a></li>
+                <li class="menu__auth-item"><a href="{% url 'register' %}" class="menu__auth-link">Регистрация</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+    {% endblock footer %}
+
+</body>
+</html>
+
+

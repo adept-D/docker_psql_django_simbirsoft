@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Авторизация</title>
+{% endblock title %}
+
+{% block content %}
+<div class="main">
+    <form action="{% url 'user_login' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-lg center-block">Авторизоваться</button>
+    </form>
+</div>
+{% endblock content %}

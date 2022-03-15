@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+{% comment %} {% block styles %} 
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/home/styles.css' %}">
+{% endblock styles %}
+{% endcomment %}
+
+{% block title %}
+    <title>Главная страница</title>
+{% endblock title %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="main">Количество сохраненных заметок: {{notes_count}} </div>
+    {% else %}
+        <div class="main">
+            <div class="main-text">Simbirsoft</div>
+        </div>
+    {% endif %}
+{% endblock content %}
